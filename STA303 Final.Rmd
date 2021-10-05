@@ -1,0 +1,164 @@
+---
+title: "Consulting Report of Concerns on Gender Inequality"
+subtitle: "Using Data Visualization and Statistical Modelling"
+author: "Report prepared for Black Saber Software by Lumos Global Consulting Ltd."
+date: 2021-04-21
+lang: "en"
+output:
+  pdf_document:
+    template: report.tex
+    toc: true
+    toc_depth: 2
+titlepage: true
+titlepage-color: "404EEA"
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+---
+
+```{r, message = FALSE, echo=FALSE, warning=FALSE}
+library(tidyverse)
+library(DiagrammeR)
+# this should supress all code and messages
+knitr::opts_chunk$set(include=FALSE, message = FALSE)
+```
+
+\newpage
+
+# Executive summary
+
+The consulting partnership is between Black Saber Software and Lumos Global Consulting Ltd. (LGC). Black Saber Software is a software engineering company that has gender parity concerns in hiring, wages and promotion procedure. We demonstrated that the company needs the improvement of AI algorithms using qualitative and quantitative methods on the data provided by Black Saber Software. The gender shows that it is a statistically significant factor on their wages but shows no significant effect on hiring and promotion processes. The statistics show that female employees have relatively low income compared to male employees. 
+
+With the results of our technical team generated, we recommend Black Saber Software to be more focused on the staffs’ performance and productivity in the salary process. As an example of the data visualization, Figure 1 can briefly show the proportion of salary averages for male employees and female employees, where the figure shows a preliminary result on the gender as an effect on salary. 
+
+Furthermore, according to the technical output, we can conclude the following findings: 
+
+* The data visualization briefly shows the proportion of the gender distributions in three internal procedures
+* Figures show the preliminary approach on whether gender is an effect of hiring, promotion, and salary processes
+* The model selection and testing specifically show the statistical significance of the gender factor on salary, but the insignificant effect on other two
+
+The methods we used in our progess were data visualization on different factors correlating with the essential concerned factor Gender. We constructed some statistical models to see if the gender is a significant factor in the model within the process of hiring, promotion and salary on Black Saber Software's internal procedure.
+
+The suggestion for Black Saber Software is that the algorithm for the AI recuitment pipeline can be continuously used despite the figures for the hiring proccess show a difference in the pass rate for male and female candidates. However, the statistics and models show that the gender is not a significant factor for the hiring process. The difference on figures is caused by other factors such as GPAs, and etc. On the promotion process, the statistics do not give the significance on gender as a factor. For the salary part, the client can weigh the staff more on their performances while the statistics illustrate the gender has effects on the salary offerings. 
+
+![Overall Salary of Different Genders](Figure 1 Rachel.png){width=50%}
+
+\newpage
+
+# Technical report
+
+## Introduction
+
+The objectives of this report are to investigate the hiring, promotion and salary processes for Black Saber Software, and determine whether these three processes are all fair, and based on talent and value to the company rather than genders. In particular, the report addresses the factors that statistically affect promotion, salary for the current staff and the hiring results for the new grad program produced by a new AI recruitment pipeline managed for the Data and Software teams. 
+
+The hiring process contains 3 phases: each phase should be testing candidates’ different skills and screening applicants who can pass the test,  the report will use statistical methods such as Data visualization to discuss the factor that affects the result of hiring and fit the generalized mixed model to test if the gender is accidentally trained by the AI to use as a factor to select candidates.
+
+The salary and promotion process involves the data for all current employees in Black Saber Software. For this part of the study, the report will be using data visualization to perceive the number of promotions and difference of wage within each factor, and building linear mixed models with random effect to determine whether the number of promotions and the wage level for employees differ by gender.
+
+
+## Research Questions
+
+* The purpose of this study is to explore the factors that are related to the hiring process, in the hiring process, is gender an important factor affecting the recruitment results?
+* Whether gender can affect the promotion opportunities for employees.
+* Whether gender has an effect on the salary process for the current employees.
+
+## Gender Effect on Hiring Process
+
+### Methods
+
+The data included the 613 applicants who attended the recruitment of Black Saber. We examined the comprehensive quality of these applicants through three stages, and screened out the candidates who were not suitable for the job according to the consideration factors at each stage. The main purpose of our study is to test whether gender has an impact on the results of these three stages. First of all, we filtered out the missing data, and made four boxplots to show the proportion of applicants of different genders in each different phase. 
+
+To consider whether gender is an important factor in getting this job, we can fit the generalized mixed model and discuss each phase. In each different phase, we fitted two different models. For the first model, gendern was one of the factors, and we used the hypothesis testiing to determine the significance of gender. The null hypothesis($H_0$) assumed there was no significance of the factor gender, which suggested the factor gender could equal to zero, and the alternative hypothesis($H_1$) was that the gender didn't equal to zero. If the p-value of gender is greater than 0.05, which fails to reject the null, it means that the factor gender does not provide the statistical significance, so gender does not really affect the result of the phase. In the second model, we fitted a new model that does not consider gender as a factor, and the likelihood ratio test was used to determine the most suitable model for this phase. If the p-value is greater than 0.05, we should choose the simpler model(the second model), if the p-value is smaller than 0.05, the complicated model(first model) would be the better choice.
+
+### Results
+
+First of all, we can find that more than half of the applicants were women. Figure 2 shows the proportion of applicants of their genders. We can see that the number of male applicants is slightly less than that of female applicants, and a small number of applicants are not willing to disclose their gender. According to Figure 3, the Gender Comparison shows that there are 8 male applicants who got the job after 3 phases, while only 2 female applicants got jobs, which is only a quarter of the number of male applicants. Now let’s consider whether gender affects other factors, the Figure 4 shows that the distribution of applicants with different gender who fall or pass phase 1, we can see that the average gpa of females who pass phase 1 is higher than males.
+
+To consider whether gender is an important factor in getting this job, we can fit the generalized mixed model and discuss each phase. According to the summary table of fitted model of phase 1, we can see that the p-values of gender, cover letter, and cv are greater than 0.05, which are fail to reject the null, it means that these factors do not provide the statistical significance,  which means that these factors do not really affect the result of phase 1. Instead, the p-value of gpa, extracurriculars, and work experience are smaller than 0.05 and reject the null hypothesis, therefore the in phase 1, the gpa of applicants and the relevance of their extracurricular activities and work experience are the main factors that affects the result. Moreover, we can use the likelihood ratio test, since the p-value is 0.6331, which is greater than 0.05, so the simpler model that does not consider gender as a factor could describe the model better.
+
+By the summary of fitted model of phase 2, we can see that the p-value of gender is greater than 0.05, which fails to reject the null. Therefore gender does not provide statistical significance and does not really affect the result of phase 2. However, the p-value of technical skill, writing skill, speaking skill and leadership presence are smaller than 0.05 and reject the null hypothesis, therefore the result of phase 2 depends on the candidates’ grade of the untimed tasks that autograded by AI and the performance of the pre-recorded video. Moreover, by the likelihood ratio test, the p-value is 0.4099 which is greater than 0.05, so the simpler model that does not consider gender as a factor could describe the model better. In phase 3, we can see that the p-value of all these three factors are greater than 0.05 according to the summary, which fails to reject the null, so gender is not an important factor that affects the interview grade in the last phase. The maximum likelihood method also shows that the model that does not consider the factor gender describes phase 3 better.
+
+\newpage 
+
+![Overall Gender Distribution at Phase 1](Yichen fig1.png){width=75%}
+
+![Overall Gender Distribution at Final Phase](yichen fig 2.png){width=75%}
+
+![Overall GPA and Gender Distribution at Phase 1 Results](Yichen fig3.png){width=75%}
+
+## Gender Effect on Promotion Process
+
+### Methods
+
+The dataset we used to evaluate promotion and salary processes contains data on all current employees for the whole duration of their employment in Black Saber Software.We are interested in whether the chance of being promoted differs between male and female employees and whether the promotion is based on talent and value to the company.We add 2 new variables to show how many times each employee has been promoted where zero  indicating the employee is either a new recruit or has never been promoted and the average productivity of each employee over all the time periods. 
+
+The figure 6 shows the proportion of each gender group based on their numbers of promotions.We can observe that the male employees being promoted take up a greater proportion than female employees, even though the difference is small under some conditions.In figure 7, gender proportion across all the roles are showed where male employees outweigh the female employees in each seniority.Since each employee may have several records in our data, the observations are not independent and employee ID can be considered as a random effect. Therefore, to evaluate this situation,we fit our data into two linear mixed-effects models which both use gender, team and average productivity as parameters ,while one model add an additional parameter which shows the number of times that the employee behaving exceeds the expectation.Then we use a likelihood ratio test to compare the goodness of fit of two models and determine whether or not adding complexity to the model makes it more accurate.
+
+![Flowchart of Data Wrangling](rbc flowchart.jpeg){width=75%}
+
+### Results
+
+From the results of the likelihood ratio test, we got an extremely small P-value which tells us it is beneficial to add parameters to our model and the complex model would give more accurate results than the simple model. From the summary table of the complex model, we can see that the P-values for average productivity and the number of times that the employee behaving exceeds the expectation are both smaller than the significance level of 0.05 indicating they are significant predictors that will affect promotion. Everytime when the employee’s performance exceeds the expectation, the number of promotion he/she is likely to get will increase by 0.46. An unexpected result is that as the employee’s average productivity increase by 1, the number of promotion decreased by 0.012 instead. Also, the P-value for gender is surprisingly high which shows that there is no difference in the chance of being promoted between male and female employees.
+
+![Overall Proportions of Gender and Promotions](rbc fig 1.png){width=75%}
+
+![Overall Proportions of Gender and Role Seniority](RBC fig 2.png){width=75%}
+
+## Gender Effect on Salary Process
+
+### Methods
+
+The raw current employees dataset used to evaluate the salary process consisted of 6906 observations for 607 current employees with the information of their genders, which teams they worked for, role seniority, quality of demonstrated leadership, productivity and salary of each four quarters for the year 2020. I filtered out the most up-to-date data Quarter 4 since this part of the report will mainly focus on the current salary. The original provided data for the variable salary was categorical with dollar sign, then we dropped the non-numeric character before the first number and converted it into numeric character. 
+
+We are interested in whether gender affects the salary of employees, and I created three boxplots to compare the salary for male and female workers (there is a small portion of employees who prefer not to tell gender) in order to have a better visualization. I started with a graph comparing the overall salary between male and female.
+
+Figure 8 shows that the overall mean salary of male is higher than females. By using team and role seniority respectively as a grouping factor, I computed the second and third boxplot. The same trend can be observed from figure 9 and 10 that most mean salaries for men outweighed the mean salaries for women within each team and role seniority. In addition, the observation units are not independent since the mean salary for employees differ within each team, and increase with the hierarchy of role seniority. We fitted two linear mixed models, where seniority, leadership level, productivity were selected as fixed effect, and team as random effect. The first model had gender as an additional fixed effect where the other one didn’t to compare whether the effect of factor gender was significant on salary based on the result of likelihood ratio test.
+
+### Results
+
+There are 607 observations and 8 groups in the salary part. As it can be seen from the result of the likelihood ratio test, the p-value obtained is $2.2^{-16}$ which is extremely small and below 0.05 significant level. The null hypothesis states that the simpler model explains the data just as well as the more complicated. Therefore, we are able to reject the null hypothesis and conclude that the model favours the complicated one and  gender is significant in terms of affecting the wage level. 
+
+The summary table of the complex model details the estimates of the fixed effect, the intercept value is 32639 where the mean salary is 32639 when all the predictors have a value of zero. However, when the gender is female the expected mean salary decreases by 2173 when everything else stays the same indicating that females receive a lower salary than males in general. Also, the absolute t-value for the parameter gender of female is high, where the value is 7.152. Then we have the confidence in its coefficient as a predictor. As for the leadership level, the performance of employees’ exceeds excellence leads to an increase of 197 on the mean salary and when the performance needs improvement, the mean salary decreases by 1370. However, the estimated coefficient for productivity is -8 indicating that when productivity increases by 1 the mean salary decreases by 8. Furthermore, the 95% confidence interval for the factor gender of women is from -2768 to -1586 which gives the same conclusion that gender is a significant factor to determine the wage level. Therefore, the mean salary differs in male and female and the wage level is not only based on the talent and the value to the company.
+
+![Overall Salary of Different Genders](Figure 1 Rachel.png){width=50%}
+
+![Overall Salary of Eight Teams](rachel figure 2.png){width=75%}
+
+![Overall Salary of Nine Roles Seniority](Rachel figure 3.png){width=75%}
+
+\newpage
+
+## Conclusion and Discussion
+
+We conclude that in the hiring process, gender is not a very important reference factor. The company is more likely to test students' academic background, such as GPA scores in university; their work experience, such as whether they have relevant extracurricular activities or work experience, and candidates' personal abilities. Similarly, we find out that the promotion process is fair and based on employees’ performances since it is not dependent on gender and will increase as the number of times that the employees’ behaviours  exceed the expectation increases. However, it is hard to conclude that the promotion is totally dependent on the talent and value to the company from our analyses. Since the number of promotions will decrease when the average productivity rises. However, the salary process is not fair because it not only depends on the talent and the value to the company, but also the gender. Overall, female workers have less salary compared to male workers based on the data analysis. In conclusion, gender is a determining factor for the salary process, but shows no effect on the hiring and promotion processes.
+
+## Strengths and Limitations
+
+This might be one of the limitations of our analyses, firstly in the hiring process, we fit the model of phase 3, however according to the summary table, the p-value of two interviewers are equal to 1, which means that the rating that given by interviewers do not affect the final results. Therefore, interviewers might rely more on their subjective and lack fairness in scoring. Besides, since the employee’s productivity usually increases with the time they stay in the company. Compare to using average productivity, the growth rate of productivity may be a better measurement to check employees’ development and salary in  Black Saber Software. Also, from Figure 11, we can observe that employees whose quality of demonstrated leadership exceeds expectations are all men, while employees whose quality of demonstrated leadership needs improvements are mostly women. Even though we do not know how the quality of leadership is determined,the extreme results would somehow affect our analyses. It might lead to a confounding factor that whether male receive higher salaries is due to gender bias or their own productivity.
+
+![Overall Propotions of Performance and Genders](Conclusion Fig.png){width=75%}
+
+\newpage
+
+# Consultant information
+## Consultant profiles
+
+**Jiaqi Bi**: Jiaqi is the co-founder and CEO of Lumos Global Consulting Ltd. He deals with all management manners such as holding meetings and scheduling internal plan within the company, and he specializes in data visualization, statistical modelling and coding in R. Jiaqi earns his Bachelor of Science degree with Honours in Mathematics and Statistics in 2022. 
+
+**Ruichen Lu**: Ruichen is the co-founder and director of the Consulting Department with Lumos Global Consulting Ltd. She manages and develops a team of consultants, and specializes in data visualization and reproducible analysis. Ruichen earned her Bachelor of Science, Majoring in Statistics and Mathematics from the University of Toronto in 2022.
+
+**Yichen Xu**: Yichen is the co-founder and CFO of Lumos Global Consulting Ltd. She specializes in reproducible analysis. Yichen earned her Bachelor of Science, Specialist in Mathematics and Its Applications from the University of Toronto in 2022.
+
+**Yining Chen**: Yining is the co-founder and also employed as the director of Public Relations in Lumos Global Consulting Ltd. with sufficient experience in performing analyses,building models and designing experiments. She has solid knowledge in statistical inference and has fluency in using R and some data-visualisation tools.Yining is a professional in devising and evaluating models for diverse business needs and has made lots of analysis reports for several multinational corporations.
+
+
+## Code of ethical conduct
+
+To promote high standard performances in statistical practice and deliver trustworthy help to our clients. Our firm has the code of ethical conduct as follow:
+
+* **Equity to All Employees**: The essential ethical element of our company. Regardless of your roles, genders, areas of expertise, please always treat other colleagues the way you want to be treated. 
+
+* **Integrity of Models and Results**: The basic ethics when you are doing statistical consulting. You should always respect the dataset and SHOULD NOT falsify data, or use an inappropriate approach to falsify the results. 
+
+* **Confidentiality between Company and Client**: The bridge of the mutual trust between our firm and the client. Everything provided by the client should ALWAYS be kept confidential and non-copyable. 
+
